@@ -10,9 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Por exemplo, você pode consultar um banco de dados para verificar as credenciais do usuário
 
         // Exemplo simples: verifica se o usuário é 'admin' e a senha é 'password'
-        if ($username === 'email' && $password === 'senha') {
+        if ($username === 'adm' && $password === '12345') {
             // Login bem-sucedido
-            echo "Login feito com sucesso, $username!";
+            echo("Login feito com sucesso:".md5($username));
         } else {
             // Login falhou
             echo "login ou senha incorreta";
