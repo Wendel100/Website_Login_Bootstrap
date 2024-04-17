@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Exemplo simples: verifica se o usuário é 'admin' e a senha é 'password'
         if ($username === 'adm' && $password === '12345') {
             // Login bem-sucedido
-            echo("Login feito com sucesso:".md5($username));
+            echo("<p>Login feito com sucesso:</p>".md5($username));
         } else {
             // Login falhou
             echo "login ou senha incorreta";
