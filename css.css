@@ -1,13 +1,23 @@
 *{margin: 0;
 padding: 0;}
+body{background-color: #7a1616;}
 .container{
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    border: 6px solid#e00101;
+    border-radius: 6px;
+    margin-top: 60px;
+    padding: 10px;
+    width: 600px;
+    height: 300px;
 }#staticEmail,#inputPassword{
     width: 300px;
 }span:hover{
 color: rgb(255, 0, 0);
+}.rw{
+    color: aliceblue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
