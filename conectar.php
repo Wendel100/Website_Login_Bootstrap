@@ -12,17 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Exemplo simples: verifica se o usuário é 'admin' e a senha é 'password'
         if ($username === 'email' && $password === 'senha') {
             // Login bem-sucedido
-            echo "Login successful. Welcome, $username!";
+            echo "Login feito com sucesso, $username!";
         } else {
             // Login falhou
-            echo "Invalid username or password. Please try again.";
+            echo "login ou senha incorreta";
         }
-    } else {
-        // Caso algum campo esteja em branco
-        echo "Both username and password are required.";
-    }
-} else {
-    // Se alguém tentar acessar diretamente o arquivo processa_login.php sem enviar os dados do formulário
-    echo "Access denied.";
-}
+    } 
+} 
 ?>
