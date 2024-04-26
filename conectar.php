@@ -1,4 +1,5 @@
 <?php
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
 $servidor = "";
 $username = "";
 $password = "";
@@ -8,7 +9,7 @@ $senha = $_POST['senha'];
 try{
 $conn = new PDO("myql:host=$dbname=mydb", $username,$password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$login = "SELECT mydb.usuario FROM usuario WHERE email =:param1 && senha=param2;";
+$login = "SELECT mydb.usuario FROM  WHERE email =:param1 && senha=param2;";
 $login = $conn->prepare($login);
 $login->bindValue("param1", $email);
 $login->bindValue("param2", $senha);
@@ -25,4 +26,6 @@ exit();
 }cath(PDOException $e){
     echo " Falha na conexão:". $e->getMessage();
 }
+   }
 exit();
+?>
