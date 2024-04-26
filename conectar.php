@@ -1,22 +1,28 @@
 <?php
-// Verifica se o formulário foi submetido
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verifica se os campos de usuário e senha foram preenchidos
-    if (isset($_POST['email']) && isset($_POST['senha'])) {
-        $username = $_POST['email'];
-        $password = $_POST['senha'];
+$servidor = "";
+$username = "";
+$password = "";
 
-        // Aqui você pode adicionar sua lógica de validação de login
-        // Por exemplo, você pode consultar um banco de dados para verificar as credenciais do usuário
-
-        // Exemplo simples: verifica se o usuário é 'admin' e a senha é 'password'
-        if ($username === 'adm' && $password === '12345') {
-            // Login bem-sucedido
-            echo("<p>Login feito com sucesso:</p>".md5($username));
-        } else {
-            // Login falhou
-            echo "login ou senha incorreta";
-        }
-    } 
-} 
-?>
+$email = $_POST['email'];
+$senha = $_POST['senha'];
+try{
+$conn = new PDO("myql:host=$dbname=mydb", $username,$password);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$login = "SELECT mydb.usuario FROM usuario WHERE email =:param1 && senha=param2;";
+$login = $conn->prepare($login);
+$login->bindValue("param1", $email);
+$login->bindValue("param2", $senha);
+$login->execute();
+$result = $login->fetch();
+if (isset($result) and $result != false) {
+    header('content-Type: text/html;charset=utf-8');
+    echo "Login efetuado com sucesso";
+} else {
+    echo "Falha ao realizar login";
+}
+$conn = null;
+exit();
+}cath(PDOException $e){
+    echo " Falha na conexão:". $e->getMessage();
+}
+exit();
