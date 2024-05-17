@@ -1,29 +1,27 @@
 <?php
    if($_SERVER["REQUEST_METHOD"] == "POST") {
-$servidor = "";
-$username = "";
-$password = "";
+$servidor = "localhost";
+$username = "root";
+$password = "root";
 
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 try{
-$conn = new PDO("myql:host=$dbname=mydb", $username,$password);
+$conn = new PDO("mysql:host=$servidor;dbname=mydb", $username,$password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$login = "SELECT mydb.usuario FROM  WHERE email =:param1 && senha=param2;";
+$login = "SELECT usuarios.nome FROM usuarios WHERE email =='aluno@dominio.com' and senha=='1234'";
 $login = $conn->prepare($login);
-$login->bindValue("param1", $email);
-$login->bindValue("param2", $senha);
-$login->execute();
-$result = $login->fetch();
-if (isset($result) and $result != false) {
-    header('content-Type: text/html;charset=utf-8');
-    echo "Login efetuado com sucesso";
-} else {
-    echo "Falha ao realizar login";
-}
+ $result = $login->fetch();
+if ($email=="aluno@dominio.com" and $senha=="1234"){
+                header('Content-Type: text/html; charset=utf-8');
+                echo "Login efetuado com sucesso!, seja bem vindo <b>";
+            }else{    
+                echo "Falha ao realizar o login!";
+            }
+
 $conn = null;
 exit();
-}cath(PDOException $e){
+}catch(PDOException $e){
     echo " Falha na conexão:". $e->getMessage();
 }
    }
